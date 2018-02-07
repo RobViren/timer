@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>Feeding Timer</title>
+</head>
+<audio id="beep">
+    <source src="beep.mp3" type="audio/mpeg">
+</audio>
+<style>
+  input{
+    font-size: 3em;
+  }
+</style>
+<body>
+  <h1 id="clock">Totally a timer</h1>
+  <input id="time" type="time" value="01:00:00">
+  <button id="submit">Set</button>
+</body>
+<script>
+  var beep = document.getElementById("beep")
+  var time = document.getElementById("time")
+  var submit = document.getElementById("submit")
+  var clock = document.getElementById("clock")
+
+  function beepALot(){
+    beeper = setInterval(function(){
+      console.log("woop")
+      beep.play()
+    },1000)
+  }
+
+  function listen() {
+    console.log(time.value)
+    time.style.visibility = "hidden";
+    submit.style.visibility = "hidden";
+
+    var hours = parseInt(time.value.substr(0,2))
+    var minutes = parseInt(time.value.substr(3,2))
+    console.log(hours,minutes)
+
+    var now = new Date()
+    var future = new Date(now.getTime() + (hours * 60 + minutes) * 60000);
+    console.log(future.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }))
+    clock.innerHTML = "Alarm will go off at " + future.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    setTimeout(beepALot,1000 * 60 * (hours * 60 + minutes))
+  }
+
+  submit.addEventListener("click",listen)
+
+
+</script>
+</html>
