@@ -41,7 +41,7 @@
     var future = new Date(now.getTime() + (hours * 60 + minutes) * 60000);
     console.log(future.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }))
     clock.innerHTML = "Alarm will go off at " + future.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-    setTimeout(beepALot,1000 * 60 * (hours * 60 + minutes))
+    setTimeout(beepALot,1000 * 30)
   }
 
   submit.addEventListener("click",listen)
